@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Nelson de Araújo — design gráfico, identidade visual e edição de vídeo.">
+  <title>Serviços | Nelson de Araújo</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    /* Estilos do Configurador de Pacotes */
+    .configurator-wrapper {
+      margin-top: 40px;
+      padding: 36px;
+      background-color: var(--bg-card);
+      border: 2px solid var(--accent);
+      border-radius: var(--radius);
+    }
+
+    .configurator-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin: 28px 0;
+    }
+
+    .config-card {
+      position: relative;
+      background-color: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 24px;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .config-card:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-3px);
+    }
+
+    .config-card.selected {
+      border-color: var(--accent);
+      background-color: rgba(34, 197, 94, 0.08);
+    }
+
+    .config-card input[type="checkbox"] {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 20px;
+      height: 20px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .config-price {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 12px 0 8px;
+    }
+
+    .config-summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-color);
+      flex-wrap: wrap;
+    }
+
+    .total-price-tag {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body data-page="servicos">
+
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="brand" href="index.html">
+      <img src="01_imagensBase/00_Logo-pag_NA.jpg" alt="Logo NA" onerror="this.style.visibility='hidden'">
+      <span>NELSON de ARAÚJO<small>DESIGN & VIDEO</small></span>
+    </a>
+    <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+    <nav class="nav">
+      <a href="index.html" data-page="home">Home</a>
+      <a href="sobre.html" data-page="sobre">Sobre</a>
+      <a href="portfolio.html" data-page="portfolio">Portfólio</a>
+      <a href="servicos.html" data-page="servicos">Serviços</a>
+      <a href="contacto.html" data-page="contacto">Contacto</a>
+    </nav>
+    <a class="nav-cta" href="contacto.html">Vamos conversar ↗</a>
+  </div>
+</header>
+
+<main>
+  <!-- INTRODUÇÃO DA PÁGINA DE SERVIÇOS -->
+  <section class="page-intro">
+    <div class="container">
+      <span class="eyebrow">Serviços</span>
+      <h1>Sistemas de Marca<br>e Produção Audiovisual.</h1>
+      <p>Soluções visuais integradas que combinam identidade gráfica, estratégia e movimento para criar comunicação com real valor e consistência.</p>
+
+      <!-- CONFIGURADOR DE PACOTES DE MARCA -->
+      <div class="configurator-wrapper">
+        <span class="eyebrow" style="background-color: rgba(34, 197, 94, 0.15); padding: 4px 10px; border-radius: 4px; border: 1px solid var(--accent);">CONFIGURADOR DE PACOTES DE MARCA</span>
+        <h2 style="font-size: clamp(24px, 3.5vw, 36px); margin-top: 12px; color: var(--text-main);">Monte a solução ideal para o seu projeto</h2>
+        <p style="color: var(--muted); font-size: 15px;">Selecione as opções pretendidas para simular o valor do seu pacote de marca personalizado:</p>
+
+        <div class="configurator-grid">
+          
+          <!-- Opção 1 -->
+          <label class="config-card" id="card-opt1">
+            <input type="checkbox" id="opt1" value="35" onchange="updateConfiguratorTotal()">
+            <span class="tag">01 / VETORIZAÇÃO</span>
+            <h3 style="font-size: 18px; margin-top: 6px;">Conversão de Imagem / Logo para Vetorial</h3>
+            <div class="config-price">a partir de 35 €</div>
+            <p style="font-size: 13px; color: var(--muted); margin-top: auto;">Redesenho e conversão técnica do seu logótipo antigo em formato vetorial limpo (EPS, SVG, PDF), sem perda de qualidade para grandes impressões.</p>
+          </label>
+
+          <!-- Opção 2 (Selecionada por defeito) -->
+          <label class="config-card selected" id="card-opt2">
+            <input type="checkbox" id="opt2" value="120" checked onchange="updateConfiguratorTotal()">
+            <span class="tag" style="color: var(--accent);">02 / RECOMENDADO</span>
+            <h3 style="font-size: 18px; margin-top: 6px;">Sistema de Marca Base</h3>
+            <div class="config-price">a partir de 120 €</div>
+            <p style="font-size: 13px; color: var(--muted); margin-top: auto;"><strong>Desenvolvimento do Logótipo é OFERTA.</strong> Inclui conceito visual, Mini Caderno de Normas (paleta de cores, tipografia, regras) e ficheiros em todos os formatos (vetorial e web).</p>
+          </label>
+
+          <!-- Opção 3 -->
+          <label class="config-card" id="card-opt3">
+            <input type="checkbox" id="opt3" value="45" onchange="updateConfiguratorTotal()">
+            <span class="tag">03 / TEMPLATES</span>
+            <h3 style="font-size: 18px; margin-top: 6px;">Criação de Templates Multi-plataforma</h3>
+            <div class="config-price">a partir de 45 €</div>
+            <p style="font-size: 13px; color: var(--muted); margin-top: auto;">Modelos visuais prontos a usar e editar nas várias redes sociais e canais digitais (posts, stories, carrosséis e cabeçalhos).</p>
+          </label>
+
+        </div>
+
+        <!-- Rodapé do Configurador -->
+        <div class="config-summary">
+          <div>
+            <span style="font-size: 13px; color: var(--muted); display: block; text-transform: uppercase; letter-spacing: 0.05em;">Estimativa do seu pacote:</span>
+            <div class="total-price-tag" id="totalPriceDisplay">120 €</div>
+          </div>
+          <a class="button" id="configCtaButton" href="contacto.html">Pedir Proposta deste Pacote ↗</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GRELHA GERAL DE SERVIÇOS (COM BOTÃO DE PEDIR PROPOSTA EM CADA QUADRO) -->
+  <section class="section">
+    <div class="container">
+      <div class="service-grid">
+        
+        <!-- Serviço 01 -->
+        <article class="service" style="display: flex; flex-direction: column;">
+          <span class="num">01 / BRANDING INTEGRADO</span>
+          <h3>Sistema de Marca & Identidade</h3>
+          <p style="margin-bottom: 24px;">Criação da linguagem visual da tua empresa: universos de cor, tipografias, regras de aplicação, suporte para redes sociais e mini caderno de normas.</p>
+          <div style="margin-top: auto;">
+            <a class="button secondary" href="contacto.html" style="width: 100%; text-align: center; font-size: 14px; padding: 12px 16px;">Pedir Proposta deste Serviço ↗</a>
+          </div>
+        </article>
+        
+        <!-- Serviço 02 -->
+        <article class="service" style="display: flex; flex-direction: column;">
+          <span class="num">02 / AUDIOVISUAL & MOTION</span>
+          <h3>Edição de vídeo & pós-produção</h3>
+          <p style="margin-bottom: 24px;">Montagem, ritmo, correção de cor, gráficos, legendagem e exportação adaptada para Reels, promocionais, eventos e comunicação corporativa.</p>
+          <div style="margin-top: auto;">
+            <a class="button secondary" href="contacto.html" style="width: 100%; text-align: center; font-size: 14px; padding: 12px 16px;">Pedir Proposta deste Serviço ↗</a>
+          </div>
+        </article>
+
+        <!-- Serviço 03 -->
+        <article class="service" style="display: flex; flex-direction: column;">
+          <span class="num">03 / DESIGN GRÁFICO</span>
+          <h3>Design editorial & suportes de marca</h3>
+          <p style="margin-bottom: 24px;">Catálogos, revistas, flyers, cartazes, desdobráveis, suportes para feiras/eventos, comunicação digital e preparação gráfica para impressão.</p>
+          <div style="margin-top: auto;">
+            <a class="button secondary" href="contacto.html" style="width: 100%; text-align: center; font-size: 14px; padding: 12px 16px;">Pedir Proposta deste Serviço ↗</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>© <span id="year"></span> Nelson de Araújo · Design & Video</span>
+    <span>Ideias com forma. Histórias com movimento.</span>
+    <a href="contacto.html">Iniciar um projeto ↗</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.querySelectorAll('.nav a').forEach(a => {
+    if (a.dataset.page === 'servicos') a.classList.add('active');
+  });
+
+  // Lógica do Configurador de Pacotes
+  function updateConfiguratorTotal() {
+    let total = 0;
+    const opt1 = document.getElementById('opt1');
+    const opt2 = document.getElementById('opt2');
+    const opt3 = document.getElementById('opt3');
+
+    document.getElementById('card-opt1').classList.toggle('selected', opt1.checked);
+    document.getElementById('card-opt2').classList.toggle('selected', opt2.checked);
+    document.getElementById('card-opt3').classList.toggle('selected', opt3.checked);
+
+    if (opt1.checked) total += parseInt(opt1.value);
+    if (opt2.checked) total += parseInt(opt2.value);
+    if (opt3.checked) total += parseInt(opt3.value);
+
+    document.getElementById('totalPriceDisplay').textContent = total > 0 ? total + ' €' : '0 €';
+  }
+</script>
+</body>
+</html>

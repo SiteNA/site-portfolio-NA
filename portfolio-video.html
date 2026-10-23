@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Nelson de Araújo — Portfólio de Vídeo e Motion Design.">
+  <title>Portfólio Vídeo | Nelson de Araújo</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    /* Estilos do Popup / Modal de Vídeo */
+    .video-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background-color: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .video-modal.active {
+      display: flex;
+    }
+
+    .video-modal-content {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      background: #000000;
+      border-radius: var(--radius, 12px);
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .video-modal-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 28px;
+      color: #ffffff;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 10;
+      line-height: 1;
+      transition: color 0.2s ease;
+    }
+
+    .video-modal-close:hover {
+      color: var(--accent, #22c55e);
+    }
+
+    .video-player-container {
+      position: relative;
+      padding-top: 56.25%; /* Proporção 16:9 */
+      width: 100%;
+    }
+
+    .video-player-container iframe,
+    .video-player-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Grelha de Vídeos e Cards */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .video-card {
+      background-color: var(--bg-card, #141416);
+      border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+      border-radius: var(--radius, 12px);
+      overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .video-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent, #22c55e);
+    }
+
+    .card-thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background-color: #000000;
+    }
+
+    .card-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .video-card:hover .card-thumb img {
+      transform: scale(1.05);
+    }
+
+    .play-btn-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.3);
+      transition: background 0.3s ease;
+    }
+
+    .video-card:hover .play-btn-overlay {
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    .play-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(34, 197, 94, 0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000000;
+      font-size: 18px;
+      padding-left: 3px;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .video-card:hover .play-icon {
+      transform: scale(1.1);
+      background: var(--accent, #22c55e);
+    }
+
+    .card-info {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-tag {
+      font-size: 12px;
+      color: var(--accent, #22c55e);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+
+    .card-info h3 {
+      font-size: 16px;
+      color: #ffffff;
+      margin: 0 0 16px 0;
+      line-height: 1.4;
+    }
+
+    .card-action {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent, #22c55e);
+    }
+  </style>
+</head>
+<body data-page="portfolio">
+
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="brand" href="index.html">
+      <img src="01_imagensBase/00_Logo-pag_NA.jpg" alt="Logo NA" onerror="this.style.visibility='hidden'">
+      <span>NELSON de ARAÚJO<small>DESIGN & VIDEO</small></span>
+    </a>
+    <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+    <nav class="nav">
+      <a href="index.html" data-page="home">Home</a>
+      <a href="sobre.html" data-page="sobre">Sobre</a>
+      <a href="portfolio.html" data-page="portfolio">Portfólio</a>
+      <a href="servicos.html" data-page="servicos">Serviços</a>
+      <a href="contacto.html" data-page="contacto">Contacto</a>
+    </nav>
+    <a class="nav-cta" href="contacto.html">Vamos conversar ↗</a>
+  </div>
+</header>
+
+<main>
+  <section class="page-intro">
+    <div class="container">
+      <span class="eyebrow">Portfólio</span>
+      <h1>Projetos de Vídeo & Motion</h1>
+      <p>Seleção de trabalhos em edição, pós-produção audiovisual e animação.</p>
+
+      <div class="portfolio-grid">
+
+        <!-- TRABALHO 1 -->
+        <article class="video-card" onclick="openVideoModal('https://player.vimeo.com/video/1232364035')">
+          <div class="card-thumb">
+            <img src="02_video/CAPA_VIDEOS.jpg" alt="Captura de Imagem & Edição/Montagem">
+            <div class="play-btn-overlay">
+              <div class="play-icon">▶</div>
+            </div>
+          </div>
+          <div class="card-info">
+            <span class="card-tag">Eventos & Cobertura</span>
+            <h3>Captura de Imagem & Edição/Montagem</h3>
+            <span class="card-action">Ver Vídeo ↗</span>
+          </div>
+        </article>
+
+        <!-- TRABALHO 2 -->
+        <article class="video-card" onclick="openVideoModal('https://player.vimeo.com/video/1236590151')">
+          <div class="card-thumb">
+            <img src="02_video/CAPA_DesignGrafico.jpg" alt="Composição Final (Petiscos) - DCB">
+            <div class="play-btn-overlay">
+              <div class="play-icon">▶</div>
+            </div>
+          </div>
+          <div class="card-info">
+            <span class="card-tag">Promocional & Comercial</span>
+            <h3>Composição Final (Petiscos) - DCB</h3>
+            <span class="card-action">Ver Vídeo ↗</span>
+          </div>
+        </article>
+
+        <!-- TRABALHO 3 -->
+        <article class="video-card" onclick="openVideoModal('https://player.vimeo.com/video/1236591757')">
+          <div class="card-thumb">
+            <img src="02_video/CAPA_DesignGrafico.jpg" alt="Bebidas (Balde, Copo, Shot) - DCB">
+            <div class="play-btn-overlay">
+              <div class="play-icon">▶</div>
+            </div>
+          </div>
+          <div class="card-info">
+            <span class="card-tag">Promocional & Comercial</span>
+            <h3>Bebidas (Balde, Copo, Shot) - DCB</h3>
+            <span class="card-action">Ver Vídeo ↗</span>
+          </div>
+        </article>
+
+        <!-- TRABALHO 4 -->
+        <article class="video-card" onclick="openVideoModal('https://player.vimeo.com/video/1236593969')">
+          <div class="card-thumb">
+            <img src="02_video/CAPA_SparkleIT.jpg" alt="Sparkle-IT">
+            <div class="play-btn-overlay">
+              <div class="play-icon">▶</div>
+            </div>
+          </div>
+          <div class="card-info">
+            <span class="card-tag">Corporativo & Tecnológico</span>
+            <h3>Sparkle-IT</h3>
+            <span class="card-action">Ver Vídeo ↗</span>
+          </div>
+        </article>
+
+        <!-- TRABALHO 5 -->
+        <article class="video-card" onclick="openVideoModal('https://player.vimeo.com/video/1236595209')">
+          <div class="card-thumb">
+            <img src="02_video/CAPA_Raid_TT.jpg" alt="RAID-TT Vilar de Murteda Promo">
+            <div class="play-btn-overlay">
+              <div class="play-icon">▶</div>
+            </div>
+          </div>
+          <div class="card-info">
+            <span class="card-tag">Eventos & Desporto</span>
+            <h3>RAID-TT Vilar de Murteda Promo</h3>
+            <span class="card-action">Ver Vídeo ↗</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- JANELA POPUP (MODAL) PARA REPRODUÇÃO DO VÍDEO -->
+<div class="video-modal" id="videoModal" onclick="closeVideoModal(event)">
+  <div class="video-modal-content">
+    <button class="video-modal-close" onclick="closeVideoModal(event, true)">&times;</button>
+    <div class="video-player-container" id="playerContainer">
+      <!-- O player de vídeo é carregado dinamicamente via JS -->
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>© <span id="year"></span> Nelson de Araújo · Design & Video</span>
+    <span>Ideias com forma. Histórias com movimento.</span>
+    <a href="contacto.html">Iniciar um projeto ↗</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Função para abrir o popup e reproduzir o vídeo do Vimeo/YouTube ou local
+  function openVideoModal(videoSrc) {
+    const modal = document.getElementById('videoModal');
+    const container = document.getElementById('playerContainer');
+
+    // Se for link do Vimeo ou YouTube, carrega dentro de um <iframe>
+    if (videoSrc.includes('vimeo.com') || videoSrc.includes('youtube.com')) {
+      const autoplayUrl = videoSrc.includes('?') ? `${videoSrc}&autoplay=1` : `${videoSrc}?autoplay=1`;
+      container.innerHTML = `<iframe src="${autoplayUrl}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+    } else {
+      // Caso seja um ficheiro .mp4 local
+      container.innerHTML = `<video controls autoplay style="width:100%; height:100%;"><source src="${videoSrc}" type="video/mp4">O seu navegador não suporta reprodução de vídeo.</video>`;
+    }
+
+    modal.classList.add('active');
+  }
+
+  // Função para fechar o popup e parar a reprodução
+  function closeVideoModal(event, forceClose = false) {
+    if (forceClose || event.target.id === 'videoModal') {
+      const modal = document.getElementById('videoModal');
+      const container = document.getElementById('playerContainer');
+      modal.classList.remove('active');
+      container.innerHTML = '';
+    }
+  }
+</script>
+</body>
+</html>

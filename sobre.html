@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Nelson de Araújo — percurso profissional em design gráfico e pós-produção de vídeo.">
+  <title>Sobre | Nelson de Araújo</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    /* Contentor principal ajustado à largura de 600px */
+    .about-content-wrapper {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Contentor do Banner 600x180 */
+    .banner-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 600 / 180;
+      overflow: hidden;
+      border-radius: var(--radius, 12px);
+      border: 1px solid var(--border-color, rgba(255, 255, 255, 0.15));
+      background-color: #ffffff;
+      margin-bottom: 24px;
+      box-sizing: border-box;
+    }
+
+    .banner-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Texto sobreposto na área branca */
+    .banner-overlay-text {
+      position: absolute;
+      top: 50%;
+      right: 4%;
+      transform: translateY(-50%);
+      width: 52%;
+      color: #111111;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .banner-title {
+      font-size: clamp(16px, 2.8vw, 26px);
+      font-weight: 800;
+      line-height: 1.1;
+      margin: 0;
+      color: #000000;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+    }
+
+    .banner-subtitle {
+      font-size: clamp(12px, 2vw, 18px);
+      font-weight: 600;
+      line-height: 1.15;
+      margin: 2px 0 0;
+      color: #222222;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .banner-subtext {
+      font-size: clamp(11px, 1.5vw, 14px);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-top: 4px;
+      color: #444444;
+      text-transform: none;
+    }
+
+    /* Bloco Geral de Conteúdo */
+    .copy-text-block {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 28px;
+      background-color: var(--bg-card, #141416);
+      border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+      border-radius: var(--radius, 12px);
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--muted, #a1a1aa);
+      text-align: left;
+    }
+
+    .section-title-sub {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent, #22c55e);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 28px 0 12px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title-sub::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background-color: var(--border-color, rgba(255, 255, 255, 0.1));
+    }
+
+    /* Cartão de Formação Académica */
+    .edu-card {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 16px 20px;
+      border-radius: 8px;
+      border-left: 3px solid var(--accent, #22c55e);
+      margin-bottom: 20px;
+    }
+
+    .edu-card h4 {
+      margin: 0;
+      font-size: 16px;
+      color: var(--text-main, #ffffff);
+      font-weight: 600;
+    }
+
+    .edu-card span {
+      font-size: 13px;
+      color: var(--muted, #a1a1aa);
+    }
+
+    /* Timeline da Experiência Profissional */
+    .timeline {
+      position: relative;
+      padding-left: 20px;
+      border-left: 2px solid var(--border-color, rgba(255, 255, 255, 0.15));
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .timeline-item {
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -26px;
+      top: 4px;
+      width: 10px;
+      height: 10px;
+      background-color: var(--accent, #22c55e);
+      border-radius: 50%;
+    }
+
+    .timeline-date {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent, #22c55e);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 2px;
+    }
+
+    .timeline-company {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main, #ffffff);
+    }
+
+    .timeline-role {
+      font-size: 13px;
+      font-weight: 600;
+      color: #e4e4e7;
+      text-transform: uppercase;
+      margin: 2px 0 6px 0;
+    }
+
+    .timeline-desc {
+      font-size: 13px;
+      color: var(--muted, #a1a1aa);
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .timeline-desc li {
+      position: relative;
+      padding-left: 12px;
+      margin-bottom: 4px;
+    }
+
+    .timeline-desc li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--accent, #22c55e);
+    }
+
+    @media (max-width: 600px) {
+      .banner-overlay-text {
+        width: 56%;
+        right: 3%;
+      }
+      .copy-text-block {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body data-page="sobre">
+
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="brand" href="index.html">
+      <img src="01_imagensBase/00_Logo-pag_NA.jpg" alt="Logo NA" onerror="this.style.visibility='hidden'">
+      <span>NELSON de ARAÚJO<small>DESIGN & VIDEO</small></span>
+    </a>
+    <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+    <nav class="nav">
+      <a href="index.html" data-page="home">Home</a>
+      <a href="sobre.html" data-page="sobre">Sobre</a>
+      <a href="portfolio.html" data-page="portfolio">Portfólio</a>
+      <a href="servicos.html" data-page="servicos">Serviços</a>
+      <a href="contacto.html" data-page="contacto">Contacto</a>
+    </nav>
+    <a class="nav-cta" href="contacto.html">Vamos conversar ↗</a>
+  </div>
+</header>
+
+<main>
+  <section class="page-intro">
+    <div class="container">
+      
+      <div class="about-content-wrapper">
+        <span class="eyebrow" style="margin-bottom: 16px; display: inline-block;">SOBRE</span>
+        
+        <!-- BANNER (600x180) -->
+        <div class="banner-container">
+          <img src="01_imagensBase/Baner-NA_Image_Sobre.jpg" alt="Nelson de Araújo — Banner Sobre" onerror="this.src='01_imagensBase/Baner-NA_Image_Sobre.png';">
+          <div class="banner-overlay-text">
+            <div class="banner-title">NELSON DE ARAÚJO</div>
+            <div class="banner-subtitle">FREELANCER</div>
+            <div class="banner-subtext">Design com propósito.</div>
+          </div>
+        </div>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <div class="copy-text-block">
+          
+          <!-- PARÁGRAFO 1 (MANTIDO) -->
+          <p style="font-size: 17px; color: var(--text-main, #ffffff); font-weight: 500; margin-bottom: 24px;">
+            Com mais de 20 anos de experiência acumulada no universo do design gráfico e do audiovisual, desenvolvo soluções visuais completas que ajudam marcas e empresas a comunicar de forma clara, profissional e impactante.
+          </p>
+
+          <!-- FORMAÇÃO ACADÉMICA -->
+          <div class="section-title-sub">Formação Académica</div>
+          <div class="edu-card">
+            <h4>Bacharelato em Design do Produto</h4>
+            <span>IPVC - ESTG — Viana do Castelo</span>
+          </div>
+
+          <!-- PERCURSO PROFISSIONAL -->
+          <div class="section-title-sub">Percurso Profissional</div>
+          
+          <div class="timeline">
+            
+            <!-- Sparkle-Domain -->
+            <div class="timeline-item">
+              <div class="timeline-date">Abril 2013 – Actualmente</div>
+              <div class="timeline-company">Sparkle-Domain — Viana do Castelo</div>
+              <div class="timeline-role">Orçamentista de Construção · Preparador de Obra · Gestão de Produtos</div>
+              <ul class="timeline-desc">
+                <li>Coordenador Orçamentista (2020 – 2022): Planeamento semanal de equipa, acompanhamento de prazos, gestão de pedidos, validação e revisão de orçamentos e relação com direção geral.</li>
+                <li>Responsável de Departamento (2013 – 2020).</li>
+              </ul>
+            </div>
+
+            <!-- Festival Folkmonção -->
+            <div class="timeline-item">
+              <div class="timeline-date">Agosto 2005 – Actualmente</div>
+              <div class="timeline-company">Festival Internacional de Danças Folclóricas “FOLK O MUNDO A DANÇAR”</div>
+              <div class="timeline-role">Freelancer Designer Gráfico, Videógrafo e Editor</div>
+              <ul class="timeline-desc">
+                <li>Todo o ecossistema visual do evento (Design Promocional Global: Cartaz oficial, outdoors, catálogo do festival, credenciais/identificadores, panfletos, sinalética e bandeiras dos países participantes).</li>
+                <li>Reportagem, captação de imagem, edição audiovisual e produção de vídeos.</li>
+              </ul>
+            </div>
+
+            <!-- N&A Foto e Video -->
+            <div class="timeline-item">
+              <div class="timeline-date">Janeiro 2018 – 2022</div>
+              <div class="timeline-company">N&A Foto e Video — Viana do Castelo</div>
+              <div class="timeline-role">Freelancer Associado — Designer Gráfico, Videógrafo e Editor</div>
+              <ul class="timeline-desc">
+                <li>Captação de imagem, edição de vídeo e transmissão em streaming.</li>
+                <li>Definição de diretrizes para projetos (metodologia, cores, fontes, estilos, formatos).</li>
+                <li>Design gráfico (posters, panfletos, outdoors, revistas, ilustrações) e Web Design.</li>
+              </ul>
+            </div>
+
+            <!-- Euromib -->
+            <div class="timeline-item">
+              <div class="timeline-date">Janeiro 2008 – 2013</div>
+              <div class="timeline-company">Euromib — Saint-Pierre-du-Perray (França)</div>
+              <div class="timeline-role">Desenhador Técnico e Orçamentista</div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ESTATÍSTICAS -->
+        <div class="stats" style="margin-top: 36px; display: flex; gap: 40px; flex-wrap: wrap;">
+          <div class="stat">
+            <strong style="font-size: 38px; color: var(--accent, #22c55e); display: block; font-weight: 800;">+20</strong>
+            <span style="color: var(--muted, #a1a1aa); font-size: 14px;">Anos de experiência</span>
+          </div>
+          <div class="stat">
+            <strong style="font-size: 38px; color: var(--accent, #22c55e); display: block; font-weight: 800;">360°</strong>
+            <span style="color: var(--muted, #a1a1aa); font-size: 14px;">Visão criativa integrando Design e Vídeo</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>© <span id="year"></span> Nelson de Araújo · Design & Video</span>
+    <span>Ideias com forma. Histórias com movimento.</span>
+    <a href="contacto.html">Iniciar um projeto ↗</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.querySelectorAll('.nav a').forEach(a => {
+    if (a.dataset.page === 'sobre') a.classList.add('active');
+  });
+</script>
+</body>
+</html>
