@@ -274,19 +274,6 @@
       transform: translateY(-2px);
     }
 
-    /* Modal / feedback de envio */
-    .msg-feedback {
-      display: none;
-      margin-top: 16px;
-      padding: 14px;
-      border-radius: var(--radius);
-      background-color: rgba(34, 197, 94, 0.2);
-      border: 1px solid var(--accent);
-      color: #fff;
-      font-size: 14px;
-      text-align: center;
-    }
-
     /* Footer */
     .site-footer {
       border-top: 1px solid var(--border-color);
@@ -353,7 +340,7 @@
         </div>
       </div>
 
-      <!-- FORMULÁRIO DE CONTACTO -->
+      <!-- FORMULÁRIO DE CONTACTO (INTEGRADO COM FORMSUBMIT) -->
       <div class="contact-form">
         
         <!-- Banner de resumo recebido da URL -->
@@ -361,29 +348,36 @@
           <strong style="color:var(--accent)">Serviço selecionado:</strong> <span id="summaryText"></span>
         </div>
 
-        <form id="proposalForm" onsubmit="handleFormSubmit(event)">
+        <!-- Substitua 'oteuemail@exemplo.com' pelo seu e-mail real -->
+        <form id="proposalForm" action="https://formsubmit.co/na.nelsondearaujo@gmail.com" method="POST" enctype="multipart/form-data">
           
+          <!-- Redireciona para a própria página de contacto após o envio -->
+          <input type="hidden" name="_next" value="https://nelsondearaujo.pt/contacto.html">
+          
+          <!-- Desativa o ReCAPTCHA temporário do FormSubmit para envio direto -->
+          <input type="hidden" name="_captcha" value="false">
+
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
             <div class="form-group">
               <label for="nome">O seu Nome *</label>
-              <input type="text" id="nome" class="form-control" placeholder="ex: Maria Silva" required>
+              <input type="text" id="nome" name="Nome" class="form-control" placeholder="ex: Maria Silva" required>
             </div>
 
             <div class="form-group">
               <label for="email">E-mail *</label>
-              <input type="email" id="email" class="form-control" placeholder="ex: maria@empresa.pt" required>
+              <input type="email" id="email" name="Email" class="form-control" placeholder="ex: maria@empresa.pt" required>
             </div>
           </div>
 
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
             <div class="form-group">
               <label for="telefone">Telefone / WhatsApp</label>
-              <input type="tel" id="telefone" class="form-control" placeholder="ex: +351 910 000 000">
+              <input type="tel" id="telefone" name="Telefone_WhatsApp" class="form-control" placeholder="ex: +351 910 000 000">
             </div>
 
             <div class="form-group">
               <label for="tipoProjeto">Tipo de Serviço / Projeto *</label>
-              <select id="tipoProjeto" class="form-control" required>
+              <select id="tipoProjeto" name="Tipo_de_Projeto" class="form-control" required>
                 <option value="">Selecione uma opção...</option>
                 <option value="Pacote de Marca">Pacote de Marca Personalizado</option>
                 <option value="Branding">Sistema de Marca & Identidade (Branding)</option>
@@ -396,14 +390,14 @@
 
           <div class="form-group" id="groupValorEstimado" style="display:none;">
             <label for="valorEstimado">Estimativa do Configurador</label>
-            <input type="text" id="valorEstimado" class="form-control" readonly style="color:var(--accent); font-weight:700; background-color: rgba(34, 197, 94, 0.05);">
+            <input type="text" id="valorEstimado" name="Valor_Estimado" class="form-control" readonly style="color:var(--accent); font-weight:700; background-color: rgba(34, 197, 94, 0.05);">
           </div>
 
           <!-- CAMPO DE ANEXO DE FICHEIRO -->
           <div class="form-group">
             <label>Anexar Ficheiro (Logótipo / PDF / Imagem de Referência)</label>
             <div class="file-upload-zone">
-              <input type="file" id="ficheiroAnexo" accept="image/*,application/pdf" onchange="previewFileName(this)">
+              <input type="file" id="ficheiroAnexo" name="Anexo" accept="image/*,application/pdf" onchange="previewFileName(this)">
               <div class="file-info">
                 <span>📁 Clique ou arraste um ficheiro aqui (JPG, PNG, SVG, PDF)</span>
                 <div id="fileNameDisplay" class="file-name-preview"></div>
@@ -413,14 +407,10 @@
 
           <div class="form-group">
             <label for="mensagem">Mensagem / Detalhes do Pedido *</label>
-            <textarea id="mensagem" class="form-control" required placeholder="Descreva o seu projeto ou forneça mais detalhes..."></textarea>
+            <textarea id="mensagem" name="Mensagem" class="form-control" required placeholder="Descreva o seu projeto ou forneça mais detalhes..."></textarea>
           </div>
 
           <button type="submit" class="button">Enviar Pedido de Proposta ↗</button>
-
-          <div id="msgFeedback" class="msg-feedback">
-            ✅ Pedido enviado com sucesso! Obrigado pelo contacto. Entrarei em contacto brevemente.
-          </div>
 
         </form>
       </div>
@@ -439,7 +429,7 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Ao carregar a página, lê os parâmetros da URL
+  // Ao carregar a página, lê os parâmetros da URL vindos do configurador de serviços
   window.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     
@@ -452,7 +442,6 @@
     if (tipo) {
       const selectTipo = document.getElementById('tipoProjeto');
       
-      // Procura correspondência exata ou parcial nas opções do select
       let matchFound = false;
       for (let option of selectTipo.options) {
         if (option.value.toLowerCase().includes(tipo.toLowerCase()) || tipo.toLowerCase().includes(option.value.toLowerCase())) {
@@ -496,23 +485,6 @@
     } else {
       display.textContent = '';
     }
-  }
-
-  // Simulação de envio de formulário
-  function handleFormSubmit(event) {
-    event.preventDefault();
-    const feedback = document.getElementById('msgFeedback');
-    
-    // Feedback visual para o utilizador
-    feedback.style.display = 'block';
-    
-    // Limpar após envio
-    setTimeout(() => {
-      document.getElementById('proposalForm').reset();
-      document.getElementById('fileNameDisplay').textContent = '';
-      document.getElementById('summaryBadge').style.display = 'none';
-      document.getElementById('groupValorEstimado').style.display = 'none';
-    }, 1000);
   }
 </script>
 </body>
