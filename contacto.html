@@ -170,6 +170,13 @@
       background-color: rgba(34, 197, 94, 0.03);
     }
 
+    /* CORREÇÃO PARA AS OPÇÕES DO SELECT EM MODO ESCURO */
+    select.form-control option {
+      background-color: #121216 !important;
+      color: #f3f3f6 !important;
+      padding: 10px;
+    }
+
     textarea.form-control {
       resize: vertical;
       min-height: 160px;
@@ -240,6 +247,16 @@
       font-size: 14px;
       line-height: 1.6;
       margin: 0;
+    }
+
+    .info-box a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .info-box a:hover {
+      text-decoration: underline;
     }
 
     /* Banner Dinâmico de Estimativa */
@@ -329,6 +346,12 @@
         </div>
 
         <div class="info-box">
+          <h3>Contacto Direto & Localização</h3>
+          <p style="margin-bottom: 8px;">📞 Telemóvel / WhatsApp: <br><a href="tel:+351917104691">+351 917 104 691</a></p>
+          <p>📍 Localização: <br><span style="color: var(--text-main);">Lourosa, Santa Maria da Feira</span></p>
+        </div>
+
+        <div class="info-box">
           <h3>Ficheiros & Logótipos</h3>
           <p>Se já possui um logótipo em formato de imagem (JPG/PNG) para converter em vetor, ou um manual/documento de referência (PDF), utilize o campo de anexo no formulário para me enviar o ficheiro.</p>
         </div>
@@ -336,7 +359,7 @@
         <div class="info-box" style="border-color: rgba(34, 197, 94, 0.3);">
           <span style="color:var(--accent); font-size:12px; font-weight:700;">RESPOSTA RÁPIDA</span>
           <h3 style="margin-top:4px;">Disponibilidade</h3>
-          <p>Respondo normalmente no prazo máximo de 24 horas úteis.</p>
+          <p>Respondo normalmente no prazo máximo de 24 horas.</p>
         </div>
       </div>
 
@@ -348,7 +371,6 @@
           <strong style="color:var(--accent)">Serviço selecionado:</strong> <span id="summaryText"></span>
         </div>
 
-        <!-- Substitua 'oteuemail@exemplo.com' pelo seu e-mail real -->
         <form id="proposalForm" action="https://formsubmit.co/na.nelsondearaujo@gmail.com" method="POST" enctype="multipart/form-data">
           
           <!-- Redireciona para a própria página de contacto após o envio -->
@@ -360,30 +382,32 @@
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
             <div class="form-group">
               <label for="nome">O seu Nome *</label>
-              <input type="text" id="nome" name="Nome" class="form-control" placeholder="ex: Maria Silva" required>
+              <input type="text" id="nome" name="Nome" class="form-control" placeholder="ex: Nelson de Araújo" required>
             </div>
 
             <div class="form-group">
               <label for="email">E-mail *</label>
-              <input type="email" id="email" name="Email" class="form-control" placeholder="ex: maria@empresa.pt" required>
+              <input type="email" id="email" name="Email" class="form-control" placeholder="ex: nelson@empresa.pt" required>
             </div>
           </div>
 
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
             <div class="form-group">
               <label for="telefone">Telefone / WhatsApp</label>
-              <input type="tel" id="telefone" name="Telefone_WhatsApp" class="form-control" placeholder="ex: +351 910 000 000">
+              <input type="tel" id="telefone" name="Telefone_WhatsApp" class="form-control" placeholder="ex: +351 917 104 691">
             </div>
 
             <div class="form-group">
               <label for="tipoProjeto">Tipo de Serviço / Projeto *</label>
               <select id="tipoProjeto" name="Tipo_de_Projeto" class="form-control" required>
                 <option value="">Selecione uma opção...</option>
-                <option value="Pacote de Marca">Pacote de Marca Personalizado</option>
-                <option value="Branding">Sistema de Marca & Identidade (Branding)</option>
-                <option value="Video">Edição de Vídeo & Pós-Produção</option>
-                <option value="Design">Design Gráfico & Editorial</option>
-                <option value="Outro">Outro assunto</option>
+                <option value="Conversão de Imagem / Logo para Vetorial">1 - Conversão de Imagem / Logo para Vetorial</option>
+                <option value="Sistema de Marca Base">2 - Sistema de Marca Base</option>
+                <option value="Criação de Templates Multi-plataforma">3 - Criação de Templates Multi-plataforma</option>
+                <option value="Sistema de Marca & Identidade">4 - Sistema de Marca & Identidade</option>
+                <option value="Edição de vídeo & pós-produção">5 - Edição de vídeo & pós-produção</option>
+                <option value="Design editorial & suportes de marca">6 - Design editorial & suportes de marca</option>
+                <option value="Outro assunto">Outro assunto</option>
               </select>
             </div>
           </div>
@@ -434,24 +458,27 @@
     const urlParams = new URLSearchParams(window.location.search);
     
     const tipo = urlParams.get('tipo');
-    const servicos = urlParams.get('servicos');
     const total = urlParams.get('total');
-    const mensagem = urlParams.get('mensagem');
 
-    // 1. Pré-preencher Tipo de Projeto
+    // 1. Pré-preencher Tipo de Serviço automaticamente
     if (tipo) {
       const selectTipo = document.getElementById('tipoProjeto');
       
       let matchFound = false;
       for (let option of selectTipo.options) {
-        if (option.value.toLowerCase().includes(tipo.toLowerCase()) || tipo.toLowerCase().includes(option.value.toLowerCase())) {
+        if (option.value.toLowerCase() === tipo.toLowerCase() || option.value.toLowerCase().includes(tipo.toLowerCase())) {
           option.selected = true;
           matchFound = true;
           break;
         }
       }
-      if (!matchFound && tipo) {
-        selectTipo.value = 'Pacote de Marca';
+      
+      if (!matchFound) {
+        let newOption = document.createElement('option');
+        newOption.value = tipo;
+        newOption.textContent = tipo;
+        newOption.selected = true;
+        selectTipo.appendChild(newOption);
       }
     }
 
@@ -463,16 +490,11 @@
       groupValor.style.display = 'block';
     }
 
-    // 3. Pré-preencher Mensagem
-    if (mensagem) {
-      document.getElementById('mensagem').value = mensagem;
-    }
-
-    // 4. Exibir Banner de Destaque
-    if (servicos || tipo) {
+    // 3. Exibir Banner de Destaque
+    if (tipo) {
       const badge = document.getElementById('summaryBadge');
       const summaryText = document.getElementById('summaryText');
-      summaryText.textContent = (servicos ? servicos : tipo) + (total ? ` — Total estimado: ${total}` : '');
+      summaryText.textContent = tipo + (total ? ` — Total estimado: ${total}` : '');
       badge.style.display = 'block';
     }
   });

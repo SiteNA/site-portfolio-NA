@@ -28,7 +28,7 @@
 </header>
 
 <main>
-  <!-- SECÇÃO HERO COM EFEITO LED -->
+  <!-- SECÇÃO HERO COM VÍDEO DE FUNDO -->
   <section class="hero">
     <iframe class="hero-video" src="https://player.vimeo.com/video/1236573731?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1" allow="autoplay; fullscreen; picture-in-picture" title="Vídeo de apresentação" style="filter: brightness(1.25) contrast(1.2) saturate(1.15);"></iframe>
     
@@ -36,9 +36,13 @@
 
     <div class="container" style="position: relative; z-index: 2;">
       <div class="hero-content">
-        <span class="eyebrow">Design gráfico · Identidade visual · Vídeo</span>
-        <h1 class="display">DESIGN QUE<br>SE FAZ NOTAR.<br><span style="color:var(--accent)">VÍDEOS QUE FICAM.</span></h1>
-        <p class="lead">Transformo ideias em narrativas visuais — da identidade de marca à comunicação gráfica e à edição de vídeo.</p>
+        <span class="eyebrow">Design gráfico · Identidade visual · Soluções de IA</span>
+        <h1 class="display" style="white-space: nowrap;">DESIGN QUE SE FAZ NOTAR.</h1>
+        <h2 style="font-size: clamp(32px, 4.5vw, 56px); font-weight: 800; line-height: 1.1; margin-top: 10px; margin-bottom: 20px; text-transform: uppercase;">
+          <span style="color: var(--accent); display: block;">Ideias com forma.</span>
+          <span style="color: var(--accent); display: block;">Histórias com movimento.</span>
+        </h2>
+        <p class="lead">Transformo ideias em narrativas visuais — unindo o rigor do design e vídeo à revolução da Inteligência Artificial.</p>
         <div class="hero-actions">
           <a class="button" href="portfolio.html">Explorar portfólio ↗</a>
           <a class="button secondary" href="contacto.html">Pedir orçamento</a>
@@ -53,51 +57,122 @@
   <section class="section">
     <div class="container">
       
-      <!-- CABEÇALHO DO TOPO DA SECÇÃO -->
-      <div class="section-head" style="margin-bottom: 32px;">
-        <div>
-          <h2 style="font-size: clamp(26px, 3.5vw, 40px); line-height: 1.2; text-transform: uppercase;">
-            UM LOGÓTIPO NÃO CONSEGUE COMUNICAR SOZINHO A FORÇA DE UM PROJETO OU MARCA!<br>
-            <span style="text-transform: none; font-size: inherit; font-weight: inherit;">É preciso um Sistema de Marca.</span>
-          </h2>
-        </div>
-      </div>
-
-      <!-- PAINEL DE DESTAQUE COM A IMAGEM CAPA_IA.JPG -->
-      <div style="margin-bottom: 48px; padding: 32px; background-color: var(--bg-card); border: 2px solid var(--accent); border-radius: var(--radius); display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; align-items: center;">
-        
-        <!-- Imagem CAPA_IA.jpg -->
-        <div style="width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border-radius: calc(var(--radius) - 2px); border: 1px solid var(--border-color); background-color: #000;">
-          <img src="01_imagensBase/CAPA_IA.jpg" alt="Design Aumentado com Inteligência Artificial" style="width: 100%; height: 100%; object-fit: cover; display: block;" onerror="this.style.display='none';">
-        </div>
-
-        <!-- Conteúdo do Texto -->
-<div style="display: flex; flex-direction: column; justify-content: center;">
-  <span class="eyebrow" style="background-color: rgba(34, 197, 94, 0.15); padding: 4px 10px; border-radius: 4px; border: 1px solid var(--accent); width: fit-content;">DESTAQUE & PROPOSTA DE VALOR</span>
-  
-  <h3 style="font-size: 24px; font-weight: 700; line-height: 1.25; margin: 12px 0 12px; color: var(--text-main);">
-    Pacotes ajustados à medida, a preços super competitivos!
-  </h3>
-
-  <p style="color: var(--muted); font-size: 15px; line-height: 1.6; margin-bottom: 20px;">
-    <strong>A IA gera imagens isoladas; Eu crio sistemas visuais completos e prontos a produzir.</strong><br>
-    A Inteligência Artificial é excelente para explorar conceitos rápidos, criação e desenvolvimento inicial do conceitos e imagem, mas não entrega a consistência de marca nem os ficheiros técnicos profissionais (vetores, impressão e formatos editáveis) de que o seu negócio realmente precisa. É preciso o rigor técnico humano no desenvolvimento de um Sistema de Marca completo.
-  </p>
-  
-  <div>
-    <a class="button" href="servicos.html" style="white-space: nowrap;">Conhecer o Pack de Marca ↗</a>
-  </div>
-</div>
-
-      </div>
-
-      <!-- TÍTULO DA SECÇÃO DE CARDS ("O QUE FAÇO" AGORA AQUI EM CIMA) -->
-      <div style="margin-bottom: 24px;">
+      <!-- 1. "O QUE FAÇO" NO TOPO -->
+      <div style="margin-bottom: 32px;">
         <span class="eyebrow">O que faço</span>
-        <h2 style="font-size: clamp(24px, 3vw, 36px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 4px;">Imagem, identidade e movimento.</h2>
+        <h2 style="font-size: clamp(26px, 3.5vw, 40px); line-height: 1.2; text-transform: uppercase; margin-top: 4px;">
+          Imagem, identidade e movimento.
+        </h2>
       </div>
 
-      <!-- OS 3 CARDS DE NAVEGAÇÃO DO PORTFÓLIO -->
+      <!-- 2. SECÇÃO DE DESTAQUE: A REVOLUÇÃO DA IA & SISTEMAS DE MARCA -->
+      <div style="margin-bottom: 32px; padding: 40px; background-color: var(--bg-card); border: 2px solid var(--accent); border-radius: var(--radius); display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; align-items: center;">
+        
+        <div style="width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border-radius: calc(var(--radius) - 2px); border: 1px solid var(--border-color); background-color: #000;">
+          <img src="01_imagensBase/CAPA_IA_Gemini.jpeg" alt="A Revolução da IA e Universos Visuais" style="width: 100%; height: 100%; object-fit: cover; display: block;" onerror="this.style.display='none';">
+        </div>
+
+        <div style="display: flex; flex-direction: column; justify-content: center;">
+          <span class="eyebrow" style="background-color: rgba(34, 197, 94, 0.15); padding: 4px 10px; border-radius: 4px; border: 1px solid var(--accent); width: fit-content;">INOVAÇÃO & MERCADO</span>
+          
+          <h3 style="font-size: clamp(22px, 2.5vw, 28px); font-weight: 700; line-height: 1.25; margin: 12px 0 12px; color: var(--text-main);">
+            A IA mudou as regras. Mas o teu negócio precisa de mais do que imagens soltas.
+          </h3>
+
+          <p style="color: var(--muted); font-size: 15px; line-height: 1.6; margin-bottom: 20px;">
+            Enquanto a Inteligência Artificial gera conteúdos isolados, eu crio <strong>sistemas de marca completos, avatares UGC hiper-realistas e universos visuais prontos a produzir</strong>. Unimos a velocidade da tecnologia ao rigor técnico humano para garantir consistência e impacto real.
+          </p>
+          
+          <div>
+            <a class="button" href="servicos.html" style="white-space: nowrap;">Descobrir as Soluções de IA & Branding ↗</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 3. SECÇÃO DE DESTAQUE: AUDITORIA RÁPIDA DE IMAGEM (GRATUITA) -->
+      <div style="margin-bottom: 32px; padding: 40px; background-color: var(--bg-card); border: 2px solid #3B82F6; border-radius: var(--radius); display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; align-items: center;">
+        
+        <div style="display: flex; flex-direction: column; justify-content: center;">
+          <span class="eyebrow" style="background-color: rgba(59, 130, 246, 0.15); color: #60A5FA; padding: 4px 10px; border-radius: 4px; border: 1px solid #3B82F6; width: fit-content;">
+            OFERTA EXCLUSIVA · 100% GRATUITO
+          </span>
+          
+          <h3 style="font-size: clamp(22px, 2.5vw, 28px); font-weight: 700; line-height: 1.25; margin: 12px 0 12px; color: var(--text-main);">
+            O seu negócio está a passar a mensagem certa? Peça uma Análise Rápida de Imagem.
+          </h3>
+
+          <p style="color: var(--muted); font-size: 15px; line-height: 1.6; margin-bottom: 16px;">
+            Faço uma <strong>auditoria gratuita e personalizada à presença visual da sua marca</strong> (logótipo, coerência gráfica e redes sociais). Analiso o que já está a funcionar bem e identifico os pontos prioritários a melhorar.
+          </p>
+
+          <ul style="color: var(--text-main); font-size: 14px; line-height: 1.8; margin-bottom: 24px; padding-left: 20px; list-style-type: disc;">
+            <li>Análise técnica e visual da marca atual</li>
+            <li>Pontos fortes vs. Oportunidades de melhoria</li>
+            <li>Envio de relatório detalhado (ou mini-vídeo explicativo)</li>
+            <li>Proposta de orçamento ajustada sem qualquer compromisso</li>
+          </ul>
+          
+          <div>
+            <a class="button" href="contacto.html?assunto=auditoria" style="white-space: nowrap; background-color: #3B82F6; border-color: #3B82F6; display: inline-block; margin-bottom: 12px;">
+              Pedir a Minha Análise Gratuita ↗
+            </a>
+
+            <p style="font-size: 12px; color: var(--muted); line-height: 1.5; margin: 0; background: rgba(255, 255, 255, 0.03); padding: 10px 14px; border-left: 3px solid #3B82F6; border-radius: 0 4px 4px 0;">
+              <strong style="color: #60A5FA;">Nota importante:</strong> Para podermos realizar a análise, a sua mensagem deve obrigatoriamente incluir o <strong>logótipo/elemento gráfico</strong> (anexo) e/ou os <strong>links do site e redes sociais</strong> do seu negócio.
+            </p>
+          </div>
+        </div>
+
+        <div style="width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border-radius: calc(var(--radius) - 2px); border: 1px solid var(--border-color); background-color: #000;">
+          <img src="01_imagensBase/CAPA_Analise_Gratuita_Gemini.jpeg" alt="Auditoria Rápida à Imagem da Marca" style="width: 100%; height: 100%; object-fit: cover; display: block;" onerror="this.style.display='none';">
+        </div>
+
+      </div>
+
+      <!-- 4. NOVO QUADRO DE DESTAQUE: GERADOR AUTOMÁTICO DE LOGÓTIPOS (GRÁTIS) -->
+      <div style="margin-bottom: 48px; padding: 40px; background-color: var(--bg-card); border: 2px solid #F59E0B; border-radius: var(--radius); display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; align-items: center;">
+        
+        <!-- Imagem / Mockup Ilustrativo -->
+        <div style="width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border-radius: calc(var(--radius) - 2px); border: 1px solid var(--border-color); background-color: #000;">
+          <img src="01_imagensBase/CAPA_Gerador_Logos.jpg" alt="Gerador Automático de Logótipos" style="width: 100%; height: 100%; object-fit: cover; display: block;" onerror="this.style.display='none';">
+        </div>
+
+        <!-- Conteúdo do Bloco -->
+        <div style="display: flex; flex-direction: column; justify-content: center;">
+          <span class="eyebrow" style="background-color: rgba(245, 158, 11, 0.15); color: #FBBF24; padding: 4px 10px; border-radius: 4px; border: 1px solid #F59E0B; width: fit-content;">
+            FERRAMENTA INTERATIVA · 100% GRATUITO
+          </span>
+          
+          <h3 style="font-size: clamp(22px, 2.5vw, 28px); font-weight: 700; line-height: 1.25; margin: 12px 0 12px; color: var(--text-main);">
+            Gerador Automático de Logótipos
+          </h3>
+
+          <p style="color: var(--muted); font-size: 15px; line-height: 1.6; margin-bottom: 16px;">
+            Experimenta a ferramenta de IA desenvolvida para estruturar conceitos visuais à medida. Define os parâmetros da tua marca, cria prompts profissionais e gera conceitos instantaneamente.
+          </p>
+
+          <ul style="color: var(--text-main); font-size: 14px; line-height: 1.8; margin-bottom: 24px; padding-left: 20px; list-style-type: disc;">
+            <li>Definição inteligente de setor e estilo visual</li>
+            <li>Criação automática de prompts otimizados para IA</li>
+            <li>Ferramenta interativa de acesso livre</li>
+          </ul>
+          
+          <div>
+            <a class="button" href="gerador-logotipos.html" style="white-space: nowrap; background-color: #F59E0B; border-color: #F59E0B; color: #0f1012; font-weight: 700;">
+              Aceder ao Gerador de Logótipos ↗
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 5. OS 3 CARDS DE NAVEGAÇÃO DO PORTFÓLIO -->
+      <div style="margin-bottom: 24px;">
+        <span class="eyebrow">Explorar portfólio</span>
+        <h2 style="font-size: clamp(24px, 3vw, 36px); margin-top: 4px;">Áreas de especialidade.</h2>
+      </div>
+
       <div class="cards">
         <a class="card" href="portfolio-video.html">
           <div class="card-image"><img src="02_video/CAPA_VIDEOS.jpg" alt="Edição de vídeo"></div>
@@ -127,24 +202,6 @@
         </a>
       </div>
 
-    </div>
-  </section>
-
-  <!-- SECÇÃO SOBRE MIM / EXPERIÊNCIA -->
-  <section class="section dark-band">
-    <div class="container split">
-      <div>
-        <span class="eyebrow">Experiência que conta</span>
-        <h2 class="display" style="font-size:clamp(42px,6vw,68px)">Mais de 20 anos<br>a dar forma<br>às ideias.</h2>
-        <a class="button" href="sobre.html">Conhecer o percurso ↗</a>
-      </div>
-      <div class="copy">
-        <p>Combino design gráfico e pós-produção audiovisual para desenvolver comunicação visual consistente, cuidada e adaptada a cada projeto.</p>
-        <div class="stats">
-          <div class="stat"><strong>+20</strong><span>Anos de experiência</span></div>
-          <div class="stat"><strong>360°</strong><span>Visão criativa</span></div>
-        </div>
-      </div>
     </div>
   </section>
 

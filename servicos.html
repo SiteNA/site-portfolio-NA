@@ -59,7 +59,7 @@
       font-size: 22px;
       font-weight: 700;
       color: var(--text-main);
-      margin: 12px 0 8px;
+      margin: 8px 0 12px;
     }
 
     .config-summary {
@@ -92,7 +92,7 @@
       <a href="index.html" data-page="home">Home</a>
       <a href="sobre.html" data-page="sobre">Sobre</a>
       <a href="portfolio.html" data-page="portfolio">Portfólio</a>
-      <a href="servicos.html" data-page="servicos">Serviços</a>
+      <a href="servicos.html" data-page="servicos" class="active">Serviços</a>
       <a href="contacto.html" data-page="contacto">Contacto</a>
     </nav>
     <a class="nav-cta" href="contacto.html">Vamos conversar ↗</a>
@@ -117,25 +117,31 @@
           
           <!-- Opção 1 -->
           <label class="config-card" id="card-opt1">
-            <input type="checkbox" id="opt1" value="35" onchange="updateConfiguratorTotal()">
+            <input type="checkbox" id="opt1" value="35" data-title="Conversão de Imagem / Logo para Vetorial" onchange="updateConfiguratorTotal()">
             <span class="tag">01 / VETORIZAÇÃO</span>
             <h3 style="font-size: 18px; margin-top: 6px;">Conversão de Imagem / Logo para Vetorial</h3>
-            <div class="config-price">a partir de 35 €</div>
+            <div class="config-price">a partir de 25 €</div>
             <p style="font-size: 13px; color: var(--muted); margin-top: auto;">Redesenho e conversão técnica do seu logótipo antigo em formato vetorial limpo (EPS, SVG, PDF), sem perda de qualidade para grandes impressões.</p>
           </label>
 
           <!-- Opção 2 (Selecionada por defeito) -->
           <label class="config-card selected" id="card-opt2">
-            <input type="checkbox" id="opt2" value="120" checked onchange="updateConfiguratorTotal()">
+            <input type="checkbox" id="opt2" value="120" data-title="Sistema de Marca Base" checked onchange="updateConfiguratorTotal()">
             <span class="tag" style="color: var(--accent);">02 / RECOMENDADO</span>
             <h3 style="font-size: 18px; margin-top: 6px;">Sistema de Marca Base</h3>
+            
+            <div style="margin: 12px 0 4px;">
+              <strong style="display: block; color: var(--accent); font-size: 13px;">Desenvolvimento do Logótipo é OFERTA.</strong>
+            </div>
+            
             <div class="config-price">a partir de 120 €</div>
-            <p style="font-size: 13px; color: var(--muted); margin-top: auto;"><strong>Desenvolvimento do Logótipo é OFERTA.</strong> Inclui conceito visual, Mini Caderno de Normas (paleta de cores, tipografia, regras) e ficheiros em todos os formatos (vetorial e web).</p>
+            
+            <p style="font-size: 13px; color: var(--muted); margin-top: auto;">Inclui conceito visual, Mini Caderno de Normas (paleta de cores, tipografia, regras) e ficheiros em todos os formatos (vetorial e web).</p>
           </label>
 
           <!-- Opção 3 -->
           <label class="config-card" id="card-opt3">
-            <input type="checkbox" id="opt3" value="45" onchange="updateConfiguratorTotal()">
+            <input type="checkbox" id="opt3" value="45" data-title="Criação de Templates Multi-plataforma" onchange="updateConfiguratorTotal()">
             <span class="tag">03 / TEMPLATES</span>
             <h3 style="font-size: 18px; margin-top: 6px;">Criação de Templates Multi-plataforma</h3>
             <div class="config-price">a partir de 45 €</div>
@@ -150,14 +156,15 @@
             <span style="font-size: 13px; color: var(--muted); display: block; text-transform: uppercase; letter-spacing: 0.05em;">Estimativa do seu pacote:</span>
             <div class="total-price-tag" id="totalPriceDisplay">120 €</div>
           </div>
-          <a class="button" id="configCtaButton" href="contacto.html">Pedir Proposta deste Pacote ↗</a>
+          <!-- Botão que gera o link dinâmico para a página de contacto -->
+          <a class="button" id="configCtaButton" href="#" onclick="goToContact(event)">Pedir Proposta deste Pacote ↗</a>
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- GRELHA GERAL DE SERVIÇOS (COM BOTÃO DE PEDIR PROPOSTA EM CADA QUADRO) -->
+  <!-- GRELHA GERAL DE SERVIÇOS -->
   <section class="section">
     <div class="container">
       <div class="service-grid">
@@ -168,7 +175,7 @@
           <h3>Sistema de Marca & Identidade</h3>
           <p style="margin-bottom: 24px;">Criação da linguagem visual da tua empresa: universos de cor, tipografias, regras de aplicação, suporte para redes sociais e mini caderno de normas.</p>
           <div style="margin-top: auto;">
-            <a class="button secondary" href="contacto.html" style="width: 100%; text-align: center; font-size: 14px; padding: 12px 16px;">Pedir Proposta deste Serviço ↗</a>
+            <a class="button secondary" href="contacto.html?tipo=Sistema de Marca & Identidade" style="width: 100%; text-align: center; font-size: 14px; padding: 12px 16px;">Pedir Proposta deste Serviço ↗</a>
           </div>
         </article>
         
@@ -178,7 +185,7 @@
           <h3>Edição de vídeo & pós-produção</h3>
           <p style="margin-bottom: 24px;">Montagem, ritmo, correção de cor, gráficos, legendagem e exportação adaptada para Reels, promocionais, eventos e comunicação corporativa.</p>
           <div style="margin-top: auto;">
-            <a class="button secondary" href="contacto.html" style="width: 100%; text-align: center; font-size: 14px; padding: 12px 16px;">Pedir Proposta deste Serviço ↗</a>
+            <a class="button secondary" href="contacto.html?tipo=Edição de vídeo & pós-produção" style="width: 100%; text-align: center; font-size: 14px; padding: 12px 16px;">Pedir Proposta deste Serviço ↗</a>
           </div>
         </article>
 
@@ -188,7 +195,7 @@
           <h3>Design editorial & suportes de marca</h3>
           <p style="margin-bottom: 24px;">Catálogos, revistas, flyers, cartazes, desdobráveis, suportes para feiras/eventos, comunicação digital e preparação gráfica para impressão.</p>
           <div style="margin-top: auto;">
-            <a class="button secondary" href="contacto.html" style="width: 100%; text-align: center; font-size: 14px; padding: 12px 16px;">Pedir Proposta deste Serviço ↗</a>
+            <a class="button secondary" href="contacto.html?tipo=Design editorial & suportes de marca" style="width: 100%; text-align: center; font-size: 14px; padding: 12px 16px;">Pedir Proposta deste Serviço ↗</a>
           </div>
         </article>
 
@@ -207,9 +214,6 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
-  document.querySelectorAll('.nav a').forEach(a => {
-    if (a.dataset.page === 'servicos') a.classList.add('active');
-  });
 
   // Lógica do Configurador de Pacotes
   function updateConfiguratorTotal() {
@@ -227,6 +231,27 @@
     if (opt3.checked) total += parseInt(opt3.value);
 
     document.getElementById('totalPriceDisplay').textContent = total > 0 ? total + ' €' : '0 €';
+  }
+
+  // Envia as opções selecionadas no configurador para a página de contacto via URL
+  function goToContact(event) {
+    event.preventDefault();
+    let selectedServices = [];
+    let total = document.getElementById('totalPriceDisplay').textContent;
+
+    if (document.getElementById('opt1').checked) selectedServices.push(document.getElementById('opt1').dataset.title);
+    if (document.getElementById('opt2').checked) selectedServices.push(document.getElementById('opt2').dataset.title);
+    if (document.getElementById('opt3').checked) selectedServices.push(document.getElementById('opt3').dataset.title);
+
+    if (selectedServices.length === 0) {
+      alert('Por favor, selecione pelo menos uma opção no configurador.');
+      return;
+    }
+
+    let tipoParam = encodeURIComponent(selectedServices.join(' + '));
+    let totalParam = encodeURIComponent(total);
+
+    window.location.href = `contacto.html?tipo=${tipoParam}&total=${totalParam}`;
   }
 </script>
 </body>

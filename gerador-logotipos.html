@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador Automático de Logótipos | Nelson de Araújo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen p-6 flex flex-col justify-between">
+    
+    <div class="max-w-4xl mx-auto space-y-8 w-full">
+        
+        <!-- Cabeçalho com Link de Retorno -->
+        <header class="border-b border-slate-800 pb-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div>
+                <h1 class="text-3xl font-bold tracking-tight text-white">Gerador Automático de Logótipos</h1>
+                <p class="text-slate-400 mt-1">Ferramenta interativa para estruturação de conceitos e prompts de logotipos orientada por IA.</p>
+            </div>
+            <a href="index.html" class="inline-flex items-center gap-2 text-sm font-medium bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-200 px-4 py-2 rounded-lg transition-colors">
+                ← Voltar à Home
+            </a>
+        </header>
+
+        <!-- Formulário Principal (Grelha ajustada para 1 coluna nesta secção) -->
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- Coluna de Parâmetros -->
+            <div class="space-y-4 bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl h-fit">
+                <h2 class="text-xl font-semibold text-emerald-400">1. Parâmetros do Projeto</h2>
+
+                <!-- Nome da Marca -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">Nome da Marca</label>
+                    <input type="text" id="brandName" placeholder="Ex: Lumina" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-slate-200 focus:ring-2 focus:ring-emerald-500 focus:outline-none text-sm">
+                </div>
+
+                <!-- Slogan (Opcional) -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">Slogan <span class="text-xs text-slate-500">(Opcional)</span></label>
+                    <input type="text" id="brandSlogan" placeholder="Ex: O poder da luz natural" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-slate-200 focus:ring-2 focus:ring-emerald-500 focus:outline-none text-sm">
+                </div>
+
+                <!-- Setor de Atividade -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">Setor de Atividade / Indústria</label>
+                    <select id="industry" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-slate-200 focus:ring-2 focus:ring-emerald-500 focus:outline-none text-sm">
+                        <option value="Tecnologia & Software">1. Tecnologia & Software</option>
+                        <option value="Saúde, Farmacêutica & Bem-estar">2. Saúde, Farmacêutica & Bem-estar</option>
+                        <option value="Alimentação, Bebidas & Restauração">3. Alimentação, Bebidas & Restauração</option>
+                        <option value="Moda, Vestuário & Acessórios">4. Moda, Vestuário & Acessórios</option>
+                        <option value="Finanças, Direito & Consultoria">5. Finanças, Direito & Consultoria</option>
+                        <option value="Imobiliário, Construção & Arquitetura">6. Imobiliário, Construção & Arquitetura</option>
+                        <option value="E-commerce, Retalho & Bens de Consumo">7. E-commerce, Retalho & Bens de Consumo</option>
+                        <option value="Turismo, Hotelaria & Lazer">8. Turismo, Hotelaria & Lazer</option>
+                        <option value="Educação, Cultura & Entretenimento">9. Educação, Cultura & Entretenimento</option>
+                        <option value="Animais de Estimação & Veterinária">10. Animais de Estimação & Veterinária</option>
+                        <option value="Energia, Indústria & Sustentabilidade">11. Energia, Indústria & Sustentabilidade</option>
+                        <option value="Serviços Profissionais & Pessoais">12. Serviços Profissionais & Pessoais</option>
+                        <option value="Outro / Personalizado">13. Outro / Personalizado</option>
+                    </select>
+                </div>
+
+                <!-- Estilo Visual Base -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">Estilo Visual Base</label>
+                    <select id="style" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-slate-200 focus:ring-2 focus:ring-emerald-500 focus:outline-none text-sm">
+                        <option value="Minimalista orgânico e fine-line">Minimalista Orgânico & Fine-line</option>
+                        <option value="Modernismo geométrico e estruturado">Modernismo Geométrico</option>
+                        <option value="Vintage industrial e editorial">Vintage Industrial & Editorial</option>
+                        <option value="Flat design limpo e contemporâneo">Flat Design Contemporâneo</option>
+                        <option value="Mascote retro-cartoon amigável">Mascote Retro-Cartoon</option>
+                    </select>
+                </div>
+
+                <!-- Tipo de Logótipo -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">Tipo de Logótipo</label>
+                    <select id="logoType" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-slate-200 focus:ring-2 focus:ring-emerald-500 focus:outline-none text-sm">
+                        <option value="Combinado (Ícone + Texto)">Combinado (Ícone + Texto)</option>
+                        <option value="Apenas Símbolo / Ícone">Apenas Símbolo / Ícone</option>
+                        <option value="Logo Tipográfico (Wordmark)">Logo Tipográfico (Wordmark)</option>
+                        <option value="Emblema / Selo">Emblema / Selo</option>
+                    </select>
+                </div>
+
+                <!-- Notas do Conceito -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">Notas do Conceito / Valores da Marca</label>
+                    <textarea id="concept" rows="2" placeholder="Ex: Sustentabilidade, proximidade, traço limpo..." class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-slate-200 focus:ring-2 focus:ring-emerald-500 focus:outline-none text-sm"></textarea>
+                </div>
+
+                <!-- Paleta de Cores de Referência -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">Paleta de Cores de Referência (HEX / Tons)</label>
+                    <input type="text" id="colors" placeholder="Ex: Terracota (#C86A4B) e Aveia (#F5F2EB)" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-slate-200 focus:ring-2 focus:ring-emerald-500 focus:outline-none text-sm">
+                </div>
+
+                <button onclick="generatePrompt()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-medium py-2.5 rounded-lg transition-colors shadow-lg shadow-emerald-900/40 text-sm">
+                    Gerar Prompt Estruturado
+                </button>
+            </div>
+
+            <!-- Coluna de Resultado (Ocupa agora o espaço vertical disponível) -->
+            <div class="space-y-5 bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl flex flex-col">
+                <div>
+                    <h2 class="text-xl font-semibold text-sky-400 mb-3">2. Prompt Técnico Gerado</h2>
+                    <div id="output" class="bg-slate-950 border border-slate-800 p-3.5 rounded-lg text-xs text-slate-300 font-mono min-h-[200px] md:min-h-[400px] whitespace-pre-wrap overflow-auto">
+                        Preenche os parâmetros ao lado e clica em "Gerar Prompt Estruturado" para criar a instrução técnica otimizada para Midjourney / DALL-E / Imagen.
+                    </div>
+                </div>
+
+                <div class="pt-2 mt-auto">
+                    <button onclick="copyToClipboard()" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium py-3 px-4 rounded-lg border border-slate-700 transition-colors">
+                        Copiar Prompt para a Área de Transferência
+                    </button>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="mt-12 border-t border-slate-800 pt-6 pb-6 text-center text-xs text-slate-500 w-full">
+        <p>© <span id="year"></span> Nelson de Araújo · Design & Video</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        function generatePrompt() {
+            const brandName = document.getElementById('brandName').value.trim() || "Brand Name";
+            const brandSlogan = document.getElementById('brandSlogan').value.trim();
+            const industry = document.getElementById('industry').value;
+            const style = document.getElementById('style').value;
+            const logoType = document.getElementById('logoType').value;
+            const concept = document.getElementById('concept').value || "identidade forte e equilibrada";
+            const colors = document.getElementById('colors').value || "paleta harmoniosa corporativa";
+
+            let sloganText = brandSlogan ? `, including the tagline text "${brandSlogan}"` : "";
+            const promptText = `Professional brand identity vector logo for "${brandName}"${sloganText}, format type: ${logoType}, company in the sector of ${industry}, featuring a ${style}, focusing on values like: ${concept}. Color palette referencing: ${colors}. Clean vector 2D flat graphic design, high aesthetic, balanced composition, harmonious curves and negative space, corporate typography, professional brand guidelines style --v 6.1 --ar 1:1`;
+
+            document.getElementById('output').innerText = promptText;
+        }
+
+        function copyToClipboard() {
+            const text = document.getElementById('output').innerText;
+            if (text.includes("Preenche os parâmetros")) {
+                 alert("Nada para copiar. Por favor, gera primeiro o prompt.");
+                 return;
+            }
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Prompt copiado com sucesso!");
+            }, () => {
+                alert("Falha ao copiar. Tenta selecionar manualmente.");
+            });
+        }
+    </script>
+</body>
+</html>

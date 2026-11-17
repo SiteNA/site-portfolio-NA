@@ -1,8 +1,309 @@
-<!doctype html><html lang="pt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Nelson de Araújo — design gráfico, identidade visual e edição de vídeo."><title>Design gráfico & editorial | Nelson de Araújo</title><link rel="stylesheet" href="assets/style.css"></head><body data-page="design" data-category="design">
-<header class="site-header"><div class="nav-wrap">
-<a class="brand" href="index.html"><img src="01_imagensBase/00_Logo-pag_NA.jpg" alt="Logo NA" onerror="this.style.visibility='hidden'"><span>NELSON de ARAÚJO<small>DESIGN & VIDEO</small></span></a>
-<button class="menu-toggle" aria-label="Abrir menu">☰</button>
-<nav class="nav"><a href="index.html" data-page="home">Home</a><a href="sobre.html" data-page="sobre">Sobre</a><a href="portfolio.html" data-page="portfolio">Portfólio</a><a href="servicos.html" data-page="servicos">Serviços</a><a href="contacto.html" data-page="contacto">Contacto</a></nav>
-<a class="nav-cta" href="contacto.html">Vamos conversar ↗</a>
-</div></header>
-<main><section class="page-intro"><div class="container"><span class="eyebrow">Portfólio / design</span><h1>Design gráfico & editorial</h1><p>Projetos editoriais, publicidade, suportes de grande formato e design têxtil.</p><div class="category-links"><a href="portfolio.html">Todas as categorias</a><a class="" href="portfolio-video.html">Vídeo</a><a class="active" href="portfolio-design.html">Design gráfico</a><a class="" href="portfolio-logos.html">Logótipos</a></div></div></section><section class="section"><div class="container"><div class="section-head"><div><span class="eyebrow">Projetos selecionados</span><h2>Comunicação com forma.</h2></div><p>Seleciona um projeto para abrir os detalhes numa janela individual.</p></div><div id="projectGrid" class="cards"></div></div></section></main><footer class="site-footer"><div class="container footer-inner"><span>© <span id="year"></span> Nelson de Araújo · Design & Video</span><span>Ideias com forma. Histórias com movimento.</span><a href="contacto.html">Iniciar um projeto ↗</a></div></footer><script>document.getElementById('year').textContent=new Date().getFullYear();</script><div id="projectModal" class="modal" aria-live="polite"></div><script src="assets/app.js"></script><script>document.querySelectorAll('.nav a').forEach(a=>{if(a.dataset.page==='portfolio')a.classList.add('active')});</script></body></html>
+<!DOCTYPE html>
+<html lang="pt" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Gráfico & Editorial — Portfólio | Nelson de Araújo</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { blue: '#3B82F6', violet: '#8B5CF6', cyan: '#22D3EE', dark: '#020617' }
+                    },
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; color: #F8FAFC; }
+        .glass-nav { background: rgba(2, 6, 23, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(148, 163, 184, 0.1); }
+        .btn-primary { background: linear-gradient(135deg, #3B82F6, #8B5CF6); transition: all 0.3s ease; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 20px 40px -10px rgba(59, 130, 246, 0.5); }
+        .nav-link { position: relative; }
+        .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #3B82F6, #8B5CF6); transition: width 0.3s ease; }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .project-card:hover { transform: translateY(-6px); }
+        .project-card:hover img { transform: scale(1.05); }
+    </style>
+</head>
+<body class="antialiased" data-page="design">
+
+    <nav class="fixed top-0 left-0 w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <img src="01_imagensBase/00_Logo-pag_NA.jpg" alt="Logo NA" class="h-10 w-auto object-contain rounded" onerror="this.style.visibility='hidden'">
+                <div>
+                    <span class="text-lg font-extrabold tracking-tight text-white block leading-none">NELSON de ARAÚJO</span>
+                    <span class="text-[11px] font-bold text-blue-400 tracking-wider uppercase mt-0.5 block">Design & Video</span>
+                </div>
+            </a>
+            <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-300">
+                <a href="index.html" class="nav-link hover:text-white transition-colors">Home</a>
+                <a href="sobre.html" class="nav-link hover:text-white transition-colors">Sobre</a>
+                <a href="portfolio.html" class="nav-link active text-white">Portfólio</a>
+                <a href="servicos.html" class="nav-link hover:text-white transition-colors">Serviços</a>
+                <a href="contacto.html" class="nav-link hover:text-white transition-colors">Contacto</a>
+            </div>
+            <a href="contacto.html" class="hidden sm:inline-flex items-center justify-center px-6 py-2.5 rounded-full font-semibold text-sm text-white btn-primary shadow-lg">Vamos conversar ↗</a>
+            <button id="mobileMenuBtn" class="md:hidden text-white p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden bg-slate-950 border-t border-slate-800 px-6 py-4 space-y-3">
+            <a href="index.html" class="block text-slate-300 font-semibold py-2">Home</a>
+            <a href="sobre.html" class="block text-slate-300 font-semibold py-2">Sobre</a>
+            <a href="portfolio.html" class="block text-white font-semibold py-2">Portfólio</a>
+            <a href="servicos.html" class="block text-slate-300 font-semibold py-2">Serviços</a>
+            <a href="contacto.html" class="block text-slate-300 font-semibold py-2">Contacto</a>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-12 bg-slate-950">
+        <div class="max-w-6xl mx-auto px-6">
+            <a href="portfolio.html" class="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-violet-400 mb-6 transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                Voltar ao Portfólio
+            </a>
+            <span class="text-xs font-bold uppercase tracking-widest text-violet-400 mb-2 block">Portfólio / Design</span>
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-white mb-3">Design gráfico & editorial</h1>
+            <p class="text-slate-400 max-w-xl">Projetos editoriais, publicidade, suportes de grande formato, merchandising e design têxtil.</p>
+            
+            <div class="flex flex-wrap gap-3 mt-6">
+                <a href="portfolio.html" class="px-4 py-2 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all border border-slate-700">Todas as categorias</a>
+                <a href="portfolio-video.html" class="px-4 py-2 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all border border-slate-700">Vídeo</a>
+                <a href="portfolio-design.html" class="px-4 py-2 rounded-full text-xs font-semibold bg-violet-600 text-white transition-all shadow-lg shadow-violet-600/30">Design gráfico</a>
+                <a href="portfolio-logos.html" class="px-4 py-2 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all border border-slate-700">Logótipos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FILTERS -->
+    <section class="pb-8 bg-slate-950">
+        <div class="max-w-6xl mx-auto px-6 flex flex-wrap gap-2">
+            <button onclick="filterDesign('all')" class="design-filter active px-4 py-2 rounded-full text-xs font-semibold bg-violet-600 text-white transition-all shadow-md">Todos</button>
+            <button onclick="filterDesign('editorial')" class="design-filter px-4 py-2 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-700 transition-all">Catálogos & Revistas</button>
+            <button onclick="filterDesign('publicidade')" class="design-filter px-4 py-2 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-700 transition-all">Cartazes & Flyers</button>
+            <button onclick="filterDesign('grandes-formatos')" class="design-filter px-4 py-2 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-700 transition-all">Grandes Formatos</button>
+            <button onclick="filterDesign('merchandising')" class="design-filter px-4 py-2 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-700 transition-all">Merchandising & Embalagem</button>
+            <button onclick="filterDesign('textil')" class="design-filter px-4 py-2 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-700 transition-all">Design Têxtil</button>
+        </div>
+    </section>
+
+    <!-- GRID -->
+    <section class="pb-24 bg-slate-950">
+        <div class="max-w-6xl mx-auto px-6">
+            <div id="designGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </div>
+    </section>
+
+    <!-- DETAIL MODAL -->
+    <div id="designModal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="relative w-full max-w-4xl max-h-[90vh] bg-slate-900 rounded-2xl border border-slate-800 shadow-2xl overflow-y-auto" onclick="event.stopPropagation()">
+            <button onclick="closeDesignModal()" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition-all border border-slate-700">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <div class="grid md:grid-cols-2 gap-0">
+                <div class="bg-slate-950 p-8 flex items-center justify-center min-h-[300px]">
+                    <img id="modalDesignImg" src="" alt="" class="max-w-full max-h-[400px] object-contain">
+                </div>
+                <div class="p-8 flex flex-col justify-center">
+                    <span id="modalDesignCategory" class="text-xs font-bold uppercase tracking-wider text-violet-400 mb-2"></span>
+                    <h3 id="modalDesignTitle" class="text-2xl font-extrabold text-white mb-4"></h3>
+                    <p id="modalDesignDesc" class="text-slate-300 text-sm leading-relaxed mb-6 whitespace-pre-line"></p>
+                    
+                    <div id="modalExternalWrapper" class="mb-6 hidden">
+                        <a id="modalExternalLink" href="#" target="_blank" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-xs text-white bg-blue-600 hover:bg-blue-700 transition-all shadow-lg">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                            <span id="modalExternalText">Abrir Revista Interativa</span>
+                        </a>
+                    </div>
+
+                    <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800 space-y-2 text-xs">
+                        <div class="flex justify-between"><span class="text-slate-400">Ano:</span><span id="modalDesignYear" class="text-slate-200 font-medium"></span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Software:</span><span id="modalDesignSoftware" class="text-slate-200 font-medium"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-10 border-t border-slate-800/60 bg-slate-950 text-sm text-slate-400">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <span>© <span id="year"></span> Nelson de Araújo · Design & Video</span>
+            <span>Ideias com forma. Histórias com movimento.</span>
+            <a href="contacto.html" class="hover:text-white transition-colors">Iniciar um projeto ↗</a>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const designProjects = [
+            {
+                id: 1,
+                title: "Catálogo de Produtos & Serviços",
+                category: "editorial",
+                categoryLabel: "Editorial / Catálogo",
+                image: "03_designG/G_01_Revista_mockup.jpg",
+                detailImage: "03_designG/G_01_Revista_Detalhe.jpg",
+                description: "Catálogo editorial interativo desenvolvido para apresentação de produtos e serviços corporativos.\nDisponível em versão digital paginada e impressão.",
+                externalUrl: "https://heyzine.com/flip-book/0b2d0ccd4b.html",
+                externalBtnText: "Abrir Revista Interativa (Heyzine)",
+                year: "2005 a 2019",
+                software: "InDesign, Photoshop"
+            },
+            {
+                id: 2,
+                title: "PANFLETOS",
+                category: "publicidade",
+                categoryLabel: "Publicidade / Editorial",
+                image: "03_designG/G_02_TRIPTICO_mockup.jpg",
+                detailImage: "03_designG/G_02_TRIPTICO_Detalhe.jpg",
+                description: "Tríptico desenvolvido para O Mundo A Dançar, com informação do evento e de toda a programação.\nDesign e composição gráfica para suportes promocionais, cartazes e desdobráveis.\nMonção.",
+                year: "2005 a 2026",
+                software: "Illustrator, Photoshop"
+            },
+            {
+                id: 3,
+                title: "Design de T-Shirt & Vestuário",
+                category: "textil",
+                categoryLabel: "Design Têxtil & Vestuário",
+                image: "03_designG/G_03_AMA_mockup.jpg",
+                detailImage: "03_designG/G_03_AMA_Detalhe.jpg",
+                description: "Criação e desenvolvimento de grafismo para estampagem em camisolas.\nTrabalho desenvolvido para evento da associação AMA.\nViana do Castelo.",
+                year: "2025",
+                software: "Illustrator, Photoshop"
+            },
+            {
+                id: 4,
+                title: "Fundo de Stand / Outdoors",
+                category: "grandes-formatos",
+                categoryLabel: "Grandes Formatos & Stands",
+                image: "03_designG/G_04_Tela_RODRIGO-PEREIRA_mockup.jpg",
+                detailImage: "03_designG/G_04_Tela_RODRIGO-PEREIRA_Detalhe.jpg",
+                description: "Design de grande formato para comunicação exterior, outdoors, lona microperfurada e estruturas de exposição/stands.\nFundo de stand para feira, para a empresa Roberto Pereira/Topmold.\nPataias (Leiria).",
+                year: "2026",
+                software: "Photoshop"
+            },
+            {
+                id: 5,
+                title: "Embalagem Corporativa & Eventos",
+                category: "merchandising",
+                categoryLabel: "Merchandising & Embalagem",
+                image: "03_designG/G_05_Embalagem_mockup.jpg",
+                detailImage: "03_designG/G_05_Embalagem_Detalhe.jpg",
+                description: "Design e conceção gráfica de suportes promocionais e embalagens personalizadas.\nCaixa corporativa para produtos da Sparkle-Domain (1); Saco de papel de alta qualidade desenvolvido para o festival internacional Folk O Mundo a Dançar (2).\nFoco na consistência de marca, impacto visual e preparação técnica para impressão.",
+                year: "2017 (1) / 2016 (2)",
+                software: "Illustrator, Photoshop"
+            },
+            {
+                id: 6,
+                title: "Decoração de montras",
+                category: "grandes-formatos",
+                categoryLabel: "Grandes Formatos & Stands",
+                image: "03_designG/G_06_Montras_mockup.jpg",
+                detailImage: "03_designG/G_06_Montras_Detalhe.jpg",
+                description: "Design e conceção gráfica para montras e espaços comerciais, garantindo visibilidade e forte atração visual para o estabelecimento.",
+                year: "2026",
+                software: "Illustrator, Photoshop"
+            }
+        ];
+
+        function renderDesignGrid(items) {
+            const grid = document.getElementById('designGrid');
+            grid.innerHTML = '';
+            items.forEach(project => {
+                const card = document.createElement('div');
+                card.className = `project-card group rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 cursor-pointer hover:border-violet-500/50 transition-all duration-300`;
+                card.onclick = () => openDesignModal(project.id);
+                card.innerHTML = `
+                    <div class="aspect-square bg-slate-950 p-6 flex items-center justify-center relative overflow-hidden">
+                        <img src="${project.image}" alt="${project.title}" class="w-full h-full object-contain transition-transform duration-500">
+                        <div class="absolute inset-0 bg-violet-900/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="bg-violet-600 text-white text-xs font-medium px-3 py-1.5 rounded-full shadow-lg">Ver Detalhes</span>
+                        </div>
+                    </div>
+                    <div class="p-4 border-t border-slate-800">
+                        <span class="text-[10px] font-bold text-violet-400 uppercase tracking-wider">${project.categoryLabel}</span>
+                        <h4 class="text-sm font-bold text-white mt-0.5">${project.title}</h4>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterDesign(category) {
+            document.querySelectorAll('.design-filter').forEach(btn => {
+                btn.classList.remove('bg-violet-600', 'text-white', 'shadow-md');
+                btn.classList.add('bg-slate-800', 'text-slate-300');
+            });
+            event.target.classList.remove('bg-slate-800', 'text-slate-300');
+            event.target.classList.add('bg-violet-600', 'text-white', 'shadow-md');
+
+            if (category === 'all') {
+                renderDesignGrid(designProjects);
+            } else {
+                renderDesignGrid(designProjects.filter(p => p.category === category));
+            }
+        }
+
+        function openDesignModal(id) {
+            const project = designProjects.find(p => p.id === id);
+            if (!project) return;
+
+            document.getElementById('modalDesignTitle').textContent = project.title;
+            document.getElementById('modalDesignCategory').textContent = project.categoryLabel;
+            document.getElementById('modalDesignDesc').textContent = project.description;
+            document.getElementById('modalDesignYear').textContent = project.year || '—';
+            document.getElementById('modalDesignSoftware').textContent = project.software || '—';
+            document.getElementById('modalDesignImg').src = project.detailImage || project.image;
+            document.getElementById('modalDesignImg').alt = project.title;
+
+            const wrapper = document.getElementById('modalExternalWrapper');
+            const link = document.getElementById('modalExternalLink');
+            const text = document.getElementById('modalExternalText');
+            if (project.externalUrl) {
+                link.href = project.externalUrl;
+                text.textContent = project.externalBtnText || 'Abrir Link';
+                wrapper.classList.remove('hidden');
+            } else {
+                wrapper.classList.add('hidden');
+            }
+
+            const modal = document.getElementById('designModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDesignModal() {
+            const modal = document.getElementById('designModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('designModal').addEventListener('click', function(e) {
+            if (e.target === this) closeDesignModal();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeDesignModal();
+        });
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+
+        renderDesignGrid(designProjects);
+    </script>
+</body>
+</html>
